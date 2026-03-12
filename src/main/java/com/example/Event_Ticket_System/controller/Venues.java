@@ -15,10 +15,9 @@ public class Venues {
     // POST organizers
     @PostMapping("api/venues")
     public ResponseEntity<Venue> createVenues(
-            @RequestBody Venue venue,
-            @RequestParam Integer venueId
+            @RequestBody Venue venue
     ) {
-        Venue savedVenue = venueService.createVenue(venue, venueId);
+        Venue savedVenue = venueService.createVenue(venue);
         return ResponseEntity.status(201).body(savedVenue);
     }
 }

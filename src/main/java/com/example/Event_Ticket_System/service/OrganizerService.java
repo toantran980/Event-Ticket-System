@@ -17,9 +17,8 @@ public class OrganizerService {
     private OrganizerRepository organizerRepository;
 
     @Transactional
-    public Organizer createOrganization(Organizer organizer, Integer organizerId) {
-        Organizer org = organizerRepository.findById(organizerId).orElse(null);
-        // org.setOrganizer_id(organizerId);  --> this is none sense there for reference
+    public Organizer createOrganization(Organizer organizer) {
+        //Organizer org = organizerRepository.findById(organizer_id).orElse(null);
         return organizerRepository.save(organizer);
     }
 }

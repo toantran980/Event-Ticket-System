@@ -17,10 +17,9 @@ public class Organizers {
     // POST organizers
     @PostMapping("api/organizers")
     public ResponseEntity<Organizer> createOrganizers(
-            @RequestBody Organizer organizer,
-            @RequestParam Integer organizerId
+            @RequestBody Organizer organizer
     ) {
-        Organizer savedOrganizer = organizerService.createOrganization(organizer, organizerId);
+        Organizer savedOrganizer = organizerService.createOrganization(organizer);
         return ResponseEntity.status(201).body(savedOrganizer);
     }
 }

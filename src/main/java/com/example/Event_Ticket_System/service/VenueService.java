@@ -13,8 +13,7 @@ public class VenueService {
     private VenueRepository venueRepository;
 
     @Transactional
-    public Venue createVenue(Venue organizer, Integer venueId) {
-        Venue ven = venueRepository.findById(venueId).orElse(null);
+    public Venue createVenue(Venue organizer) {
         return venueRepository.save(organizer);
     }
 
