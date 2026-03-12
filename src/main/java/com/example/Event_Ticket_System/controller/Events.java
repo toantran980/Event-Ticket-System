@@ -5,6 +5,7 @@ import com.example.Event_Ticket_System.dto.TicketTypesDTO;
 import com.example.Event_Ticket_System.entity.Event;
 import com.example.Event_Ticket_System.service.EventService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -20,19 +21,18 @@ public class Events {
     private EventService eventService;
 
     @PostMapping("/api/events")
-    public EventResponseDTO createEvent(
+    public ResponseEntity<EventResponseDTO> createEvent(
             @RequestBody Event event,
             @RequestParam Integer organizer_id,
             @RequestParam Integer venue_id
     ) {
         Event savedEvent = eventService.createEvent(event, organizer_id, venue_id);
-
-        EventResponseDTO eventdto = new EventResponseDTO(
+        EventResponseDTO eventDTO = new EventResponseDTO(
                 savedEvent.getDescription(),               // String event_details
                 Collections.emptyList(), // List<TicketTypesDTO> assume it empty b/c there is no ticket in Event entity yet
                 savedEvent.getOrganizer().getName(),
                 savedEvent.getVenue().getName()
         );
-    return eventdto;
+    return ResponseEntity.status(201).body(eventDTO);
     }
 }
