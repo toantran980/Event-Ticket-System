@@ -1,5 +1,6 @@
 package com.example.Event_Ticket_System.service;
 
+import com.example.Event_Ticket_System.dto.EventResponseDTO;
 import com.example.Event_Ticket_System.entity.Event;
 import com.example.Event_Ticket_System.entity.Organizer;
 import com.example.Event_Ticket_System.entity.Venue;
@@ -10,6 +11,10 @@ import jakarta.persistence.EntityNotFoundException;
 import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import java.util.Collections;
+import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 public class EventService {
@@ -40,4 +45,17 @@ public class EventService {
         return eventRepository.save(event);
     }
 
+    public List<EventResponseDTO> getAllUpcomingEvents() {
+        return eventRepository.findAll().stream().filter(
+                event -> (Status.UPCOMING).equals(event.getStatus())
+                )
+                .map(
+                event -> new EventResponseDTO(
+                        event.getDescription(),
+                        Collections.emptyList(), // not sure
+                        event.getOrganizer().getName(),
+                        event.getVenue().getName()
+                )
+        ).collect(Collectors.toList());
+    }
 }

@@ -5,11 +5,9 @@ import com.example.Event_Ticket_System.dto.TicketTypesDTO;
 import com.example.Event_Ticket_System.entity.Event;
 import com.example.Event_Ticket_System.service.EventService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
 
@@ -34,5 +32,11 @@ public class Events {
                 savedEvent.getVenue().getName()
         );
     return ResponseEntity.status(201).body(eventDTO);
+    }
+
+    @GetMapping("api/events")
+    public ResponseEntity<List<EventResponseDTO>> getEvents() {
+        List<EventResponseDTO> upcomingEvents = eventService.getAllUpcomingEvents();
+        return ResponseEntity.status(200).body(upcomingEvents);
     }
 }
