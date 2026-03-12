@@ -24,15 +24,15 @@ public class EventService {
 
     // Is this public Event createEvent(EvenTDO event, Interger event_id) or
     @Transactional
-    public Event createEvent(Event event, Integer event_id) {
-        organizerRepository.findById(event_id)
+    public Event createEvent(Event event, Integer organizer_id, Integer venue_id) {
+        Organizer organizer = organizerRepository.findById(organizer_id)
                 .orElseThrow(() -> new EntityNotFoundException("Organizer does not exist"));
 
-        venueRepository.findById(event_id)
+        Venue venue = venueRepository.findById(venue_id)
                 .orElseThrow(() -> new EntityNotFoundException("Venue does not exist"));
 
-        Event eventCreated = new Event();
-        eventCreated.setEvent_id(event.getEvent_id());
+        event.setOrganizer(organizer);
+        event.setVenue(venue);
 
         // OR
         //eventCreatedTDO.event.setTitle(dto.getTitle());.....
