@@ -21,7 +21,7 @@ public class Event {
     @Enumerated(EnumType.STRING)
     private Status status;
 
-    private enum Status {
+    public enum Status {
         UPCOMING,
         ONGOING,
         CANCELLED,

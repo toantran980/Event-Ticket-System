@@ -4,10 +4,11 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+@Data
 @AllArgsConstructor
 @NoArgsConstructor
-@Data
-public class RevenueDTO {
-    private String event_title;
-    private Long total_confirmed_venues;
+public class TicketTypesDTO {
+    private String ticket_type;
+    private Integer price;
+    private Integer ticket_quantity;
 }
