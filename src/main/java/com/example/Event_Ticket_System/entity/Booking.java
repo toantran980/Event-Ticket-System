@@ -19,7 +19,7 @@ public class Booking {
     @Enumerated(EnumType.STRING)
     private PaymentStatus payment_status;
 
-    private enum PaymentStatus{
+    public enum PaymentStatus{
         PENDING,
         CONFIRMED,
         CANCELLED
