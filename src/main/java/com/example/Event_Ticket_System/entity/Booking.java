@@ -19,6 +19,7 @@ public class Booking {
     @Enumerated(EnumType.STRING)
     private PaymentStatus payment_status;
 
+    // By An Nguyen — made public so BookingService can access this
     public enum PaymentStatus{
         PENDING,
         CONFIRMED,
