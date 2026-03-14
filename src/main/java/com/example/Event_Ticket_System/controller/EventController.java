@@ -33,14 +33,20 @@ public class EventController {
                 savedEvent.getStatus().name(),
                 savedEvent.getOrganizer().getName(),
                 savedEvent.getVenue().getName(),
-                Collections.emptyList()
+                Collections.emptyList() // may need to modify later
         );
     return ResponseEntity.status(201).body(eventDTO);
     }
 
-    @GetMapping("api/events")
+    @GetMapping
     public ResponseEntity<List<EventResponseDTO>> getEvents() {
         List<EventResponseDTO> upcomingEvents = eventService.getAllUpcomingEvents();
         return ResponseEntity.status(200).body(upcomingEvents);
+    }
+
+    @GetMapping("/{id}")
+    public ResponseEntity<EventResponseDTO> getEventByIdWithTicketTypes(@PathVariable("id") Integer event_id) {
+        EventResponseDTO events = eventService.getEventByIdWithTicketTypes(event_id);
+        return ResponseEntity.status(200).body(events);
     }
 }

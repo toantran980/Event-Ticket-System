@@ -8,7 +8,8 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 public class TicketTypesDTO {
-    private String ticket_type;
-    private Integer price;
+    private Integer ticket_type_id;
+    private String ticket_name;
+    private Long price;
     private Integer ticket_quantity;
 }

@@ -4,12 +4,14 @@ package com.example.Event_Ticket_System.service;
 
 import com.example.Event_Ticket_System.entity.Attendee;
 import com.example.Event_Ticket_System.repository.AttendeeRepository;
+import jakarta.persistence.EntityExistsException;
 import jakarta.persistence.EntityNotFoundException;
 import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class AttendeeService {
@@ -20,6 +22,10 @@ public class AttendeeService {
     // POST /api/attendees
     @Transactional
     public Attendee createAttendee(Attendee attendee) {
+        attendeeRepository.findByEmail(attendee.getEmail())
+                .ifPresent( existingAttendee -> {
+                    throw new EntityExistsException("Attendee with email " + attendee.getEmail() + " already exists");
+                });
         return attendeeRepository.save(attendee);
     }
 
