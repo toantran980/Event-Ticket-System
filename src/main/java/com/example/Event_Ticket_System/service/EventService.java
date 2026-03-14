@@ -2,14 +2,9 @@ package com.example.Event_Ticket_System.service;
 
 import com.example.Event_Ticket_System.dto.EventResponseDTO;
 import com.example.Event_Ticket_System.dto.RevenueDTO;
-import com.example.Event_Ticket_System.entity.Booking;
-import com.example.Event_Ticket_System.entity.Event;
-import com.example.Event_Ticket_System.entity.Organizer;
-import com.example.Event_Ticket_System.entity.Venue;
-import com.example.Event_Ticket_System.repository.BookingRepository;
-import com.example.Event_Ticket_System.repository.EventRepository;
-import com.example.Event_Ticket_System.repository.OrganizerRepository;
-import com.example.Event_Ticket_System.repository.VenueRepository;
+import com.example.Event_Ticket_System.dto.TicketTypesDTO;
+import com.example.Event_Ticket_System.entity.*;
+import com.example.Event_Ticket_System.repository.*;
 import jakarta.persistence.EntityNotFoundException;
 import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -34,7 +29,9 @@ public class EventService {
     @Autowired
     private BookingRepository bookingRepository;
 
-    // Is this public Event createEvent(EvenTDO event, Interger event_id) or
+    @Autowired
+    private TicketTypeRepository ticketTypeRepository;
+
     @Transactional
     public Event createEvent(Event event, Integer organizer_id, Integer venue_id) {
         Organizer organizer = organizerRepository.findById(organizer_id)
@@ -46,10 +43,31 @@ public class EventService {
         event.setOrganizer(organizer);
         event.setVenue(venue);
 
-        // OR
-        //eventCreatedTDO.event.setTitle(dto.getTitle());.....
-
         return eventRepository.save(event);
+    }
+
+    public EventResponseDTO getEventByIdWithTicketTypes(Integer event_id) {
+        Event event = eventRepository.findById(event_id)
+                .orElseThrow(() -> new RuntimeException("Event does not exist"));
+        List<TicketType> tickets = ticketTypeRepository.findByEventEventId(event_id);
+        List<TicketTypesDTO> ticket_dto = tickets.stream()
+                .map(ticket -> new TicketTypesDTO(
+                        ticket.getTicket_type_id(),
+                        ticket.getName(),
+                        ticket.getPrice(),
+                        ticket.getQuantity_available()
+                )).toList();
+
+        return new EventResponseDTO(
+                event.getEvent_id(),
+                event.getTitle(),
+                event.getDescription(),
+                event.getEvent_date(),
+                event.getStatus().name(),
+                event.getOrganizer().getName(),
+                event.getVenue().getName(),
+                ticket_dto
+        );
     }
 
     public List<EventResponseDTO> getAllUpcomingEvents(){
@@ -64,7 +82,7 @@ public class EventService {
                         event.getStatus().name(),
                         event.getOrganizer().getName(),
                         event.getVenue().getName(),
-                        Collections.emptyList()
+                        Collections.emptyList() // need change later
                 ))
                 .toList();
     }
@@ -82,7 +100,7 @@ public class EventService {
         // add up the prices — using long just in case numbers get big
         long totalRevenue = confirmedBookings.stream()
                 .filter(b -> b.getTicketType() != null && b.getTicketType().getPrice() != null)
-                .mapToLong(b -> b.getTicketType().getPrice().longValue())
+                .mapToLong(b -> b.getTicketType().getPrice())
                 .sum();
 
         return new RevenueDTO(event.getTitle(), totalRevenue);

@@ -9,8 +9,9 @@ import java.util.List;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-
 public class AttendeeBookingsDTO {
+    private Integer attendee_id;
     private String attendee_name;
+    private String attendee_email;
     List<BookingResponseDTO> bookings;
 }
