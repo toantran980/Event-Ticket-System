@@ -8,6 +8,6 @@ import java.util.List;
 
 @Repository
 public interface TicketTypeRepository extends JpaRepository<TicketType,Integer> {
-    List<TicketType> findByEventEventId(Integer eventId);
+    List<TicketType> findByEventId(Integer eventId);
 
 }

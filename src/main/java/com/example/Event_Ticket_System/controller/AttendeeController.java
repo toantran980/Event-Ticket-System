@@ -26,7 +26,6 @@ public class AttendeeController {
             @RequestBody Attendee attendee
     ) {
         Attendee savedAttendee = attendeeService.createAttendee(attendee);
-        // not sure if this the great idea
         List<BookingResponseDTO> booking = new ArrayList<>();
 
         AttendeeBookingsDTO attendeeBookingsDTO = new AttendeeBookingsDTO(

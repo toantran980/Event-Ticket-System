@@ -10,6 +10,6 @@ import lombok.NoArgsConstructor;
 public class TicketTypesDTO {
     private Integer ticket_type_id;
     private String ticket_name;
-    private Long price;
+    private Double price;
     private Integer ticket_quantity;
 }

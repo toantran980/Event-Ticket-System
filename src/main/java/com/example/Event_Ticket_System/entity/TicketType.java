@@ -13,7 +13,7 @@ public class TicketType {
 
     private String name;
 
-    private Long price;
+    private Double price;
 
     private Integer quantity_available;
 

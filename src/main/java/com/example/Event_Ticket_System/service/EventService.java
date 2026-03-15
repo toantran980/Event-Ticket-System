@@ -49,7 +49,7 @@ public class EventService {
     public EventResponseDTO getEventByIdWithTicketTypes(Integer event_id) {
         Event event = eventRepository.findById(event_id)
                 .orElseThrow(() -> new RuntimeException("Event does not exist"));
-        List<TicketType> tickets = ticketTypeRepository.findByEventEventId(event_id);
+        List<TicketType> tickets = ticketTypeRepository.findByEventId(event_id);
         List<TicketTypesDTO> ticket_dto = tickets.stream()
                 .map(ticket -> new TicketTypesDTO(
                         ticket.getTicket_type_id(),
@@ -98,9 +98,9 @@ public class EventService {
         List<Booking> confirmedBookings = bookingRepository.findConfirmedBookingsByEventId(eventId);
 
         // add up the prices — using long just in case numbers get big
-        long totalRevenue = confirmedBookings.stream()
+        Long totalRevenue = (long) confirmedBookings.stream()
                 .filter(b -> b.getTicketType() != null && b.getTicketType().getPrice() != null)
-                .mapToLong(b -> b.getTicketType().getPrice())
+                .mapToDouble(b -> b.getTicketType().getPrice().longValue())
                 .sum();
 
         return new RevenueDTO(event.getTitle(), totalRevenue);
