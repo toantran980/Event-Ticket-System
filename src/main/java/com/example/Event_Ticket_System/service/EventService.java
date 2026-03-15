@@ -98,7 +98,7 @@ public class EventService {
         List<Booking> confirmedBookings = bookingRepository.findConfirmedBookingsByEventId(eventId);
 
         // add up the prices — using long just in case numbers get big
-        Double totalRevenue = (long) confirmedBookings.stream()
+        Double totalRevenue = confirmedBookings.stream()
                 .filter(b -> b.getTicketType() != null && b.getTicketType().getPrice() != null)
                 .mapToDouble(b -> b.getTicketType().getPrice())
                 .sum();
