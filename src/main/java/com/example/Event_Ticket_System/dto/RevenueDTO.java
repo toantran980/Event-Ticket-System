@@ -9,5 +9,5 @@ import lombok.NoArgsConstructor;
 @Data
 public class RevenueDTO {
     private String event_title;
-    private Long total_confirmed_venues;
+    private Double total_confirmed_venues;
 }
