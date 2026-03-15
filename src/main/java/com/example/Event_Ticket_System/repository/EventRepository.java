@@ -39,5 +39,6 @@ public interface EventRepository extends JpaRepository<Event, Integer> {
 
     //Paginated Query: Find events within a specific date range
     Page<Event> findByEventDateBetween(LocalDateTime startDate, LocalDateTime endDate, Pageable pageable);
+
 }
 
