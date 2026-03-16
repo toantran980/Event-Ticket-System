@@ -19,10 +19,10 @@ public interface EventRepository extends JpaRepository<Event, Integer> {
     List<Event> findByTitleIgnoreCase(String title);
 
     // Find events by organizedID
-    List<Event> findByOrganizerOrganizerId(Integer organizerId);
+    List<Event> findByOrganizerId(Integer organizerId);
 
     // Find events by venue ID
-    List<Event> findByVenueVenueId (Integer venueId);
+    List<Event> findByVenueId (Integer venueId);
 
     // Find events within a specific date range
     List<Event> findByEventDateBetween(LocalDateTime startDate, LocalDateTime endDate);
