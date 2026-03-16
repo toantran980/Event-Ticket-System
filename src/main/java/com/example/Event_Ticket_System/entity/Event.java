@@ -3,6 +3,7 @@ package com.example.Event_Ticket_System.entity;
 import jakarta.persistence.*;
 import lombok.Data;
 import java.time.LocalDateTime;
+import java.util.List;
 
 @Entity
 @Table(name="Event")
@@ -35,4 +36,8 @@ public class Event {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name="venue_id")
     private Venue venue;
+
+    // One event can have many attendees
+    @OneToMany(mappedBy = "event", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<Attendee> attendees;
 }

@@ -24,7 +24,11 @@ public interface AttendeeRepository extends JpaRepository<Attendee,Integer> {
 
     List<Attendee> findByNameContaining (String name , Sort sort);
 
-    @Query("SELECT a FROM Attendee a WHERE a.name LIKE %:name%")
-    List <Attendee> searchByName (@Param("name") String name);
+    // Count attendees by name
+    long countByName(String name);
 
+
+    // Find attendees by event ID
+    @Query("SELECT a FROM Attendee a WHERE a.event.event_id = :eventId")
+    List<Attendee> findByEventId(@Param("eventId") Integer eventId);
 }
