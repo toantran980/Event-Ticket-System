@@ -14,9 +14,4 @@ public class Attendee {
     private String name;
 
     private String email;
-
-    // Many attendees can belong to one event
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "event_id", nullable = false) // Maps to the foreign key column "event_id" in the Attendee table
-    private Event event;
 }

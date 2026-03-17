@@ -5,8 +5,6 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.data.jpa.repository.JpaRepository;
-import org.springframework.data.jpa.repository.Query;
-import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
@@ -24,11 +22,5 @@ public interface AttendeeRepository extends JpaRepository<Attendee,Integer> {
 
     List<Attendee> findByNameContaining (String name , Sort sort);
 
-    // Count attendees by name
-    long countByName(String name);
 
-
-    // Find attendees by event ID
-    @Query("SELECT a FROM Attendee a WHERE a.event.event_id = :eventId")
-    List<Attendee> findByEventId(@Param("eventId") Integer eventId);
 }
