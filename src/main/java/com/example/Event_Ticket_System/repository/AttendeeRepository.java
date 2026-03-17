@@ -18,9 +18,7 @@ public interface AttendeeRepository extends JpaRepository<Attendee,Integer> {
 
     List<Attendee> findByName (String name);
 
-    Page<Attendee> findALL (Pageable pageable);
+    Page<Attendee> findAll(Pageable pageable);
 
     List<Attendee> findByNameContaining (String name , Sort sort);
-
-
 }
