@@ -26,7 +26,7 @@ public interface TicketTypeRepository extends JpaRepository<TicketType,Integer> 
     List<TicketType> findLowAvailabilityTickets(Integer threshold);
 
     // Custom query to find ticket types by event ID and price range
-    @Query(value = "SELECT * FROM TicketType WHERE event_id = :eventId AND price BETWEEN :minPrice AND :maxPrice", nativeQuery = true)
+    @Query(value = "SELECT t FROM TicketType t WHERE t.event.event_id = :eventId AND t.price BETWEEN :minPrice AND :maxPrice")
     List<TicketType> findByEventIdAndPriceRange (Integer eventId, Double minPrice, Double maxPrice);
 
     // Find a ticket type by name and event ID
