@@ -26,11 +26,13 @@ public interface BookingRepository extends JpaRepository<Booking, Integer> {
             "AND b.payment_status = 'CONFIRMED'")
     Double calculateTotalRevenueByEventID(@Param("eventID") Integer eventID);
 
-    // Get all booking for a specific attendee
-    List<Booking> findByAttendeeAttendeeId(Integer attendeeId);
+    // Get all bookings for a specific attendee
+    @Query("SELECT b FROM Booking b WHERE b.attendee.attendee_id = :attendeeId")
+    List<Booking> findByAttendeeId(@Param("attendeeId") Integer attendeeId);
 
-    //Get all bookings for a specific ticket type
-    List<Booking> findByTicketTypeTicketTypeId(Integer ticketTypeId);
+    // Get all bookings for a specific ticket type
+    @Query("SELECT b FROM Booking b WHERE b.ticketType.ticket_type_id = :ticketTypeId")
+    List<Booking> findByTicketTypeId(@Param("ticketTypeId") Integer ticketTypeId);
 
     // Counts confirmed bookings for an event
     @Query("SELECT COUNT(b) FROM Booking b " +
