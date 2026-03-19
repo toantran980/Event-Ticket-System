@@ -32,11 +32,13 @@ public interface BookingRepository extends JpaRepository<Booking, Integer> {
             "JOIN FETCH b.attendee a " +
             "JOIN FETCH b.booking_id i " +
             "JOIN FETCH b.booking_reference r " +
+            "JOIN FETCH b.ticketType.event.title e " +
             "WHERE a.attendee_id = :attendeeId")
     List<Booking> findBookingsByAttendeeId(@Param("attendeeId") Integer attendeeId);
 
-    //Get all bookings for a specific ticket type
-    List<Booking> findByTicketTypeId(Integer ticketTypeId);
+    @Query("SELECT b FROM Booking b " +
+            "WHERE b.ticketType.ticket_type_id = :ticketTypeId")
+    List<Booking> findBookingsByTicketTypeId(@Param("ticketTypeId") Integer ticketTypeId);
 
     // Counts confirmed bookings for an event
     @Query("SELECT COUNT(b) FROM Booking b " +
