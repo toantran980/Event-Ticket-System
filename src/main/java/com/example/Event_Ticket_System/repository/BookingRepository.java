@@ -1,5 +1,6 @@
 package com.example.Event_Ticket_System.repository;
 
+import com.example.Event_Ticket_System.dto.BookingResponseDTO;
 import com.example.Event_Ticket_System.entity.Booking;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -26,9 +27,13 @@ public interface BookingRepository extends JpaRepository<Booking, Integer> {
             "AND b.payment_status = 'CONFIRMED'")
     Double calculateTotalRevenueByEventID(@Param("eventID") Integer eventID);
 
-    // Get all booking for a specific attendee
-    //@Query("SELECT ")
-    List<Booking> findByAttendeeId(Integer attendeeId);
+    // Get all booking for a specific attendee and include event title in response
+    @Query("SELECT b FROM Booking b " +
+            "JOIN FETCH b.attendee a " +
+            "JOIN FETCH b.booking_id i " +
+            "JOIN FETCH b.booking_reference r " +
+            "WHERE a.attendee_id = :attendeeId")
+    List<Booking> findBookingsByAttendeeId(@Param("attendeeId") Integer attendeeId);
 
     //Get all bookings for a specific ticket type
     List<Booking> findByTicketTypeId(Integer ticketTypeId);
