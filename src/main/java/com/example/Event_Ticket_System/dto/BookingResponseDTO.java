@@ -16,5 +16,5 @@ public class BookingResponseDTO {
     private String attendee_name;
     private String event_title;
     private String ticket_type_name;
-    private Long price;
+    private Double price;
 }

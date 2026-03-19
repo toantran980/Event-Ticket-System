@@ -3,6 +3,7 @@ package com.example.Event_Ticket_System.controller;
 import com.example.Event_Ticket_System.dto.AttendeeBookingsDTO;
 import com.example.Event_Ticket_System.dto.BookingResponseDTO;
 import com.example.Event_Ticket_System.entity.Attendee;
+import com.example.Event_Ticket_System.entity.Booking;
 import com.example.Event_Ticket_System.repository.AttendeeRepository;
 import com.example.Event_Ticket_System.service.AttendeeService;
 import com.example.Event_Ticket_System.service.BookingService;
@@ -43,9 +44,8 @@ public class AttendeeController {
 
     @GetMapping("/{id}/bookings")
     public ResponseEntity<List<BookingResponseDTO>> getAllBookingsAttendee(
-            @PathVariable Integer id
-    ) {
-        List<AttendeeBookingsDTO> bookings = bookingService.getAllBookingsAttendee(id);
-        return ResponseEntity.status(200).body(bookings);
+            @PathVariable("id") Integer attendeeId) {
+        List<BookingResponseDTO> bookingsByAttendee = attendeeService.getAllBookingsAttendee(attendeeId);
+        return ResponseEntity.status(200).body(bookingsByAttendee);
     }
 }
