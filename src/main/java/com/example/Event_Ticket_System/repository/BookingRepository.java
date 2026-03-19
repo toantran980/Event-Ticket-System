@@ -34,7 +34,7 @@ public interface BookingRepository extends JpaRepository<Booking, Integer> {
             "JOIN FETCH b.booking_reference r " +
             "JOIN FETCH b.ticketType.event.title e " +
             "WHERE a.attendee_id = :attendeeId")
-    List<Booking> findBookingsByAttendeeId(@Param("attendeeId") Integer attendeeId);
+    List<Booking> getAllBookingsAttendee(@Param("attendeeId") Integer attendeeId);
 
     @Query("SELECT b FROM Booking b " +
             "WHERE b.ticketType.ticket_type_id = :ticketTypeId")
