@@ -28,8 +28,7 @@ public interface BookingRepository extends JpaRepository<Booking, Integer> {
     Double calculateTotalRevenueByEventID(@Param("eventID") Integer eventID);
 
     // Get all booking for a specific attendee
-    @EntityGraph(attributePaths = {"attendee", "booking_id", "booking_reference", "ticketType.event.title"})
-    @Query("SELECT b FROM Booking b WHERE b.attendee.attendee_id = :attendeeId")
+    @EntityGraph(attributePaths = {"attendee", "ticketType", "ticketType.event"})
     List<Booking> findByAttendeeId(Integer attendeeId);
 
     //Get all bookings for a specific ticket type

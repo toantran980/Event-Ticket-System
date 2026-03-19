@@ -69,6 +69,10 @@ public class AttendeeService {
     public List<BookingResponseDTO> getAllBookingsAttendee(Integer attendeeId) {
         List<Booking> bookings = bookingRepository.findByAttendeeId(attendeeId);
 
+        if (bookings.isEmpty()) {
+            throw new EntityNotFoundException("Attendee " + attendeeId + " not found");
+        }
+
         return bookings.stream().map(booking -> {
             BookingResponseDTO dto = new BookingResponseDTO();
             dto.setBooking_reference(booking.getBooking_reference());
