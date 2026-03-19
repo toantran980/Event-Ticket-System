@@ -44,7 +44,7 @@ public class BookingService {
 
         // take one ticket from stock
         ticketType.setQuantity_available(ticketType.getQuantity_available() - 1);
-        ticketTypeRepository.save(ticketTypeRepository.save(ticketType));
+        ticketTypeRepository.save(ticketType);
 
         // build the booking
         Booking booking = new Booking();
