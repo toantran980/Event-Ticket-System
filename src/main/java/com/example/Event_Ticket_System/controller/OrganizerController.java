@@ -14,9 +14,9 @@ public class OrganizerController {
     @Autowired
     private OrganizerService organizerService;
 
-    public OrganizerController(OrganizerService organizerService) {
+    /*public OrganizerController(OrganizerService organizerService) {
         this.organizerService = organizerService;
-    }
+    }*/
 
     // POST organizers
     @PostMapping
