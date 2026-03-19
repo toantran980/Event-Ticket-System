@@ -5,6 +5,7 @@ import com.example.Event_Ticket_System.dto.BookingResponseDTO;
 import com.example.Event_Ticket_System.entity.Attendee;
 import com.example.Event_Ticket_System.repository.AttendeeRepository;
 import com.example.Event_Ticket_System.service.AttendeeService;
+import com.example.Event_Ticket_System.service.BookingService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -20,6 +21,9 @@ public class AttendeeController {
 
     @Autowired
     private AttendeeService attendeeService;
+
+    @Autowired
+    private BookingService bookingService;
 
     @PostMapping
     public ResponseEntity<AttendeeBookingsDTO> createAttendee(
@@ -37,4 +41,11 @@ public class AttendeeController {
         return ResponseEntity.status(201).body(attendeeBookingsDTO);
     }
 
+    @GetMapping("/{id}/bookings")
+    public ResponseEntity<List<BookingResponseDTO>> getAllBookingsAttendee(
+            @PathVariable Integer id
+    ) {
+        List<AttendeeBookingsDTO> bookings = bookingService.getAllBookingsAttendee(id);
+        return ResponseEntity.status(200).body(bookings);
+    }
 }
