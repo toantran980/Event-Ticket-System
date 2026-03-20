@@ -95,7 +95,7 @@ public class BookingService {
                 ? booking.getTicketType().getEvent().getTitle() : null);
         dto.setTicket_type_name(booking.getTicketType() != null ? booking.getTicketType().getName() : null);
         dto.setPrice(booking.getTicketType() != null && booking.getTicketType().getPrice() != null
-                ? booking.getTicketType().getPrice().longValue() : null);
+                ? booking.getTicketType().getPrice() : null);
         return dto;
     }
 }
