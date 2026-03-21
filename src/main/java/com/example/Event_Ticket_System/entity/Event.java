@@ -1,5 +1,6 @@
 package com.example.Event_Ticket_System.entity;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.persistence.*;
 import lombok.Data;
 import java.time.LocalDateTime;
@@ -16,6 +17,7 @@ public class Event {
 
     private String description;
 
+    @JsonProperty("eventDate")
     private LocalDateTime event_date;
 
     @Enumerated(EnumType.STRING)

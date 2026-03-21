@@ -16,7 +16,7 @@ import java.util.Optional;
 public interface AttendeeRepository extends JpaRepository<Attendee,Integer> {
     Optional<Attendee> findByEmail(String email);
 
-    boolean existsByEmail (String email);
+    /*boolean existsByEmail (String email);
 
     List<Attendee> findByName (String name);
 
@@ -25,6 +25,6 @@ public interface AttendeeRepository extends JpaRepository<Attendee,Integer> {
     List<Attendee> findByNameContaining (String name , Sort sort);
 
     @Query("SELECT a FROM Attendee a WHERE a.name LIKE %:name%")
-    List <Attendee> searchByName (@Param("name") String name);
+    List <Attendee> searchByName (@Param("name") String name);*/
 
 }
