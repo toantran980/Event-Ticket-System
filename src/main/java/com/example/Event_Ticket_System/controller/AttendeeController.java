@@ -30,16 +30,8 @@ public class AttendeeController {
     public ResponseEntity<AttendeeBookingsDTO> createAttendee(
             @RequestBody Attendee attendee
     ) {
-        Attendee savedAttendee = attendeeService.createAttendee(attendee);
-        List<BookingResponseDTO> booking = new ArrayList<>();
-
-        AttendeeBookingsDTO attendeeBookingsDTO = new AttendeeBookingsDTO(
-                savedAttendee.getAttendee_id(),
-                savedAttendee.getName(),
-                savedAttendee.getEmail(),
-                booking
-        );
-        return ResponseEntity.status(201).body(attendeeBookingsDTO);
+        AttendeeBookingsDTO savedAttendee = attendeeService.createAttendee(attendee);
+        return ResponseEntity.status(201).body(savedAttendee);
     }
 
     @GetMapping("/{id}/bookings")

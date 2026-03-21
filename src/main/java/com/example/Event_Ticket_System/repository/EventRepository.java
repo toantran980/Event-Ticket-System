@@ -8,5 +8,5 @@ import java.util.List;
 
 @Repository
 public interface EventRepository extends JpaRepository<Event, Integer> {
-    List<Event> findByStatus(Event.Status status); // maybe make Status class as public under Entity
+    List<Event> findByStatus(Event.Status status);
 }

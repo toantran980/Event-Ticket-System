@@ -25,18 +25,8 @@ public class EventController {
             @RequestParam Integer organizer_id,
             @RequestParam Integer venue_id
     ) {
-        Event savedEvent = eventService.createEvent(event, organizer_id, venue_id);
-        EventResponseDTO eventDTO = new EventResponseDTO(
-                savedEvent.getEvent_id(),
-                savedEvent.getTitle(),
-                savedEvent.getDescription(),
-                savedEvent.getEvent_date(),
-                savedEvent.getStatus().name(),
-                savedEvent.getOrganizer().getName(),
-                savedEvent.getVenue().getName(),
-                Collections.emptyList()
-        );
-    return ResponseEntity.status(201).body(eventDTO);
+        EventResponseDTO savedEvent = eventService.createEvent(event, organizer_id, venue_id);
+        return ResponseEntity.status(201).body(savedEvent);
     }
 
     @GetMapping
