@@ -34,7 +34,7 @@ public class AttendeeController {
         List<BookingResponseDTO> booking = new ArrayList<>();
 
         AttendeeBookingsDTO attendeeBookingsDTO = new AttendeeBookingsDTO(
-                savedAttendee.getAttendeeId(),
+                savedAttendee.getAttendee_id(),
                 savedAttendee.getName(),
                 savedAttendee.getEmail(),
                 booking

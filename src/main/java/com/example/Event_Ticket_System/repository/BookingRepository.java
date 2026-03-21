@@ -32,7 +32,7 @@ public interface BookingRepository extends JpaRepository<Booking, Integer> {
     List<Booking> findByAttendee_AttendeeId(Integer attendeeId);*/
 
     //@EntityGraph(attributePaths = {"attendee", "ticketType", "ticketType.event"})
-    @Query("SELECT b FROM Booking b WHERE b.attendee.attendeeId = :attendeeId")
+    @Query("SELECT b FROM Booking b WHERE b.attendee.attendee_id = :attendeeId")
     List<Booking> findBookingsByAttendeeId(@Param("attendeeId") Integer attendeeId);
 
     //Get all bookings for a specific ticket type
