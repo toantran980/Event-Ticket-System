@@ -9,7 +9,7 @@ import lombok.Data;
 public class Attendee {
     @Id
     @GeneratedValue(strategy=GenerationType.IDENTITY)
-    private Integer attendee_id;
+    private Integer attendeeId;
 
     private String name;
 

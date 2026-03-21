@@ -67,7 +67,7 @@ public class AttendeeService {
     }*/
 
     public List<BookingResponseDTO> getAllBookingsAttendee(Integer attendeeId) {
-        List<Booking> bookings = bookingRepository.findByAttendeeId(attendeeId);
+        List<Booking> bookings = bookingRepository.findBookingsByAttendeeId(attendeeId);
 
         if (bookings.isEmpty()) {
             throw new EntityNotFoundException("Attendee " + attendeeId + " not found");
