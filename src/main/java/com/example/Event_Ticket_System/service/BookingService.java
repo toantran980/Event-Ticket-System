@@ -1,6 +1,6 @@
 package com.example.Event_Ticket_System.service;
 
-// By An Nguyen — handles booking and cancellation logic
+// Handles booking and cancellation logic
 
 import com.example.Event_Ticket_System.dto.BookingResponseDTO;
 import com.example.Event_Ticket_System.entity.Attendee;
@@ -18,7 +18,6 @@ import java.time.LocalDateTime;
 
 @Service
 public class BookingService {
-
     @Autowired
     private BookingRepository bookingRepository;
 

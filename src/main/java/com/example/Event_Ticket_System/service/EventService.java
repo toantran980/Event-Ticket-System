@@ -24,7 +24,7 @@ public class EventService {
     @Autowired
     private OrganizerRepository organizerRepository;
 
-    // By An Nguyen — needed for revenue calculation
+    // Needed for revenue calculation
     @Autowired
     private BookingRepository bookingRepository;
 
@@ -101,7 +101,7 @@ public class EventService {
                 .toList();
     }
 
-    // By An Nguyen — GET /api/events/{id}/revenue
+    // GET /api/events/{id}/revenue
     // sums up ticket prices of all CONFIRMED bookings for this event
     public RevenueDTO getEventRevenue(Integer eventId) {
 

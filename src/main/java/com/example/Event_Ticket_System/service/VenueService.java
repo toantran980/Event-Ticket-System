@@ -8,7 +8,6 @@ import org.springframework.stereotype.Service;
 
 @Service
 public class VenueService {
-
     @Autowired
     private VenueRepository venueRepository;
 
@@ -16,5 +15,4 @@ public class VenueService {
     public Venue createVenue(Venue organizer) {
         return venueRepository.save(organizer);
     }
-
 }

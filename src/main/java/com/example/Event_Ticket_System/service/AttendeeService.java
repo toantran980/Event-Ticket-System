@@ -1,6 +1,6 @@
 package com.example.Event_Ticket_System.service;
 
-// By An Nguyen — service for all attendee stuff
+// Service for all attendee stuff
 
 import com.example.Event_Ticket_System.dto.AttendeeBookingsDTO;
 import com.example.Event_Ticket_System.dto.BookingResponseDTO;
@@ -19,7 +19,6 @@ import java.util.List;
 
 @Service
 public class AttendeeService {
-
     @Autowired
     private AttendeeRepository attendeeRepository;
 

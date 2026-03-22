@@ -106,12 +106,13 @@
 ### 11) POST /api/bookings
 - Scenario: John Wick books a VIP ticket to Spring Music Fest
 - http://localhost:8080/api/bookings
--  {\
+- {\
   "attendee": {\
   "attendee_id": 1\
   },\
   "ticketType": {\
   "ticket_type_id": 1\
+  }\
   }
 
 ### 12) GET /api/attendees/{1}/bookings

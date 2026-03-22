@@ -12,11 +12,12 @@ public class VenueController {
     @Autowired
     private VenueService venueService;
 
+    // Class Constructor
     public VenueController() {
         this.venueService = new VenueService();
     }
 
-    // POST organizers
+    // POST /api/venues
     @PostMapping
     public ResponseEntity<Venue> createVenues(
             @RequestBody Venue venue

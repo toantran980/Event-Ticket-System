@@ -22,10 +22,6 @@ public class TicketType {
     @Column(name = "quantity_available")
     private Integer quantity_available = 100;
 
-    /*@ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name="event_id")
-    private Event event;*/
-
     @ManyToOne
     @JoinColumn(name = "event_id")
     @JsonIgnoreProperties({"ticketTypes"})

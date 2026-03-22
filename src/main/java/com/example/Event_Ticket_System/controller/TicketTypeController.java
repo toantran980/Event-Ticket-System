@@ -16,6 +16,7 @@ public class TicketTypeController {
         this.ticketTypeService = ticketTypeService;
     }
 
+    // GET /api/events/{eventId}
     @PostMapping("/event/{eventId}")
     public ResponseEntity<TicketType> createTicketType(@PathVariable Integer eventId,
                                                        @RequestBody TicketType ticketType) {
