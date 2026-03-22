@@ -2,7 +2,7 @@
 ### Team Members
 - Toan Tran - 881738009
 - James Nguyen - 806134391
-- Moses Bui
+- Moses Bui - 837586106
 - An Nguyen - 885598904
 
 ## Video Demo
