@@ -3,7 +3,7 @@
 - Toan Tran - 881738009
 - James Nguyen - 806134391
 - Moses Bui
-- An Nguyen
+- An Nguyen - 885598904
 
 <u>Below are the API requests needed for Postman testing:</u>
 - Note 1: If inspecting the raw README.md file, simply remove any backslashes (\\).
