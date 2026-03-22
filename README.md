@@ -1,7 +1,7 @@
 # Event Ticketing System
 ### Team Members
 - Toan Tran - 881738009
-- James Nguyen
+- James Nguyen - 806134391
 - Moses Bui
 - An Nguyen
 
