@@ -5,12 +5,16 @@
 - Moses Bui
 - An Nguyen - 885598904
 
-<u>Below are the API requests needed for Postman testing:</u>
-- Note 1: If inspecting the raw README.md file, simply remove any backslashes (\\).
-- Note 2: Ensure that IntelliJ, Postman, and PostgreSQL (pgAdmin4) are all configured correctly & running at the same time.
-- Note 3: Follow these API requests in exact order to demo the full experience.
-- Note 4: Third bullet contains the JSON body, which you can plug into here on Postman (*see pic below*).
+## Instructions
+- Ensure IntelliJ, Postman, and PostgreSQL (via pgAdmin4) are all configured correctly & running at the same time, as follows:\
+• **IntelliJ**: application.properties (use *localhost number*, *password*, and *server.port* specific to your local machine )\
+• **PostgreSQL**: create database called "ticket_db" (no quotes)
+- In Postman, follow the API requests listed below, in exact order, to demo the full experience.
+- For each API Request (*listed below*), the 3rd bullet point contains the JSON body, which you can plug into the "Body" tab on Postman (*see pic below*).
+- *Note*: If reading/using the raw README.md file, simply remove any backslashes (\\).
 <img width="1096" height="173" alt="image" src="https://github.com/user-attachments/assets/d9a89256-0535-412c-848e-46a15de5f1fa" />
+
+## Below are the API requests needed for Postman testing:
 
 ### 1) POST /api/organizers
 - Scenario: Live Nation organizer registers
