@@ -90,7 +90,13 @@ public class EventService {
                         event.getStatus().name(),
                         event.getOrganizer().getName(),
                         event.getVenue().getName(),
-                        Collections.emptyList() // need change later
+                        event.getTicketTypes().stream()
+                                .map(tt -> new TicketTypesDTO(
+                                        tt.getTicket_type_id(),
+                                        tt.getName(),
+                                        tt.getPrice(),
+                                        tt.getQuantity_available()
+                                )).toList()
                 ))
                 .toList();
     }
