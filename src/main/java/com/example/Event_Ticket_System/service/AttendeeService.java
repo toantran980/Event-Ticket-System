@@ -2,6 +2,7 @@ package com.example.Event_Ticket_System.service;
 
 // By An Nguyen — service for all attendee stuff
 
+import com.example.Event_Ticket_System.dto.AttendeeBookingsDTO;
 import com.example.Event_Ticket_System.dto.BookingResponseDTO;
 import com.example.Event_Ticket_System.entity.Attendee;
 import com.example.Event_Ticket_System.entity.Booking;
@@ -13,6 +14,7 @@ import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -27,12 +29,18 @@ public class AttendeeService {
 
     // POST /api/attendees
     @Transactional
-    public Attendee createAttendee(Attendee attendee) {
+    public AttendeeBookingsDTO createAttendee(Attendee attendee) {
         attendeeRepository.findByEmail(attendee.getEmail())
                 .ifPresent( existingAttendee -> {
                     throw new EntityExistsException("Attendee with email " + attendee.getEmail() + " already exists");
                 });
-        return attendeeRepository.save(attendee);
+        Attendee savedAttendee = attendeeRepository.save(attendee);
+        return new AttendeeBookingsDTO(
+                savedAttendee.getAttendee_id(),
+                savedAttendee.getName(),
+                savedAttendee.getEmail(),
+                new ArrayList<>()
+        );
     }
 
     // GET /api/attendees

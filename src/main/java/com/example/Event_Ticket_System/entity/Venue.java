@@ -1,7 +1,10 @@
 package com.example.Event_Ticket_System.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.Data;
+
+import java.util.List;
 
 @Entity
 @Table(name="Venue")
@@ -18,4 +21,8 @@ public class Venue {
     private String city;
 
     private Integer total_capacity;
+
+    @JsonIgnore
+    @OneToMany(mappedBy = "venue")
+    private List<Event> events;
 }

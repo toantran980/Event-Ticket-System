@@ -39,8 +39,14 @@ public class BookingService {
         TicketType ticketType = ticketTypeRepository.findById(ticketTypeId)
                 .orElseThrow(() -> new EntityNotFoundException("TicketType " + ticketTypeId + " not found"));
 
-        if (ticketType.getQuantity_available() <= 0)
+        /*if (ticketType.getQuantity_available() <= 0)
+            throw new IllegalStateException("No tickets left for: " + ticketType.getName());*/
+
+        if (ticketType.getQuantity_available() == null) {
+            ticketType.setQuantity_available(100);
+        } else if (ticketType.getQuantity_available() <= 0) {
             throw new IllegalStateException("No tickets left for: " + ticketType.getName());
+        }
 
         // take one ticket from stock
         ticketType.setQuantity_available(ticketType.getQuantity_available() - 1);

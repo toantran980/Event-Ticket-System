@@ -17,13 +17,13 @@ public class BookingController {
     @Autowired
     private BookingService bookingService;
 
-    @PostMapping
+    /*@PostMapping
     public ResponseEntity<BookingResponseDTO> bookTicket(
             // @RequestBody Booking book,
-            @RequestParam Integer attendId,
+            @RequestParam Integer attendeeId,
             @RequestParam Integer ticketTypeId
     ) {
-        BookingResponseDTO savedBooking = bookingService.bookTicket(attendId, ticketTypeId);
+        BookingResponseDTO savedBooking = bookingService.bookTicket(attendeeId, ticketTypeId);
         BookingResponseDTO bookingDTO = new BookingResponseDTO(
                 savedBooking.getBooking_reference(),
                 savedBooking.getBooking_date(),
@@ -33,7 +33,17 @@ public class BookingController {
                 savedBooking.getTicket_type_name(),
                 savedBooking.getPrice()
         );
-        return ResponseEntity.status(201).body(bookingDTO);
+        return ResponseEntity.status(201).body(savedBooking);
+    }*/
+
+    @PostMapping
+    public ResponseEntity<BookingResponseDTO> bookTicket(@RequestBody Booking booking) {
+        BookingResponseDTO savedBooking = bookingService.bookTicket(
+                booking.getAttendee().getAttendee_id(),
+                booking.getTicketType().getTicket_type_id()
+        );
+
+        return ResponseEntity.status(201).body(savedBooking);
     }
 
     @PutMapping("/{id}/cancel")

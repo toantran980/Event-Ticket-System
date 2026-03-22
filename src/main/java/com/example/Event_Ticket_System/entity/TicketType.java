@@ -1,7 +1,11 @@
 package com.example.Event_Ticket_System.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
 import lombok.Data;
+
+import java.util.List;
 
 @Entity
 @Table(name="TicketType")
@@ -15,9 +19,19 @@ public class TicketType {
 
     private Double price;
 
-    private Integer quantity_available;
+    @Column(name = "quantity_available")
+    private Integer quantity_available = 100;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    /*@ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name="event_id")
+    private Event event;*/
+
+    @ManyToOne
+    @JoinColumn(name = "event_id")
+    @JsonIgnoreProperties({"ticketTypes"})
     private Event event;
+
+    @JsonIgnore
+    @OneToMany(mappedBy = "ticketType")
+    private List<Booking> bookings;
 }

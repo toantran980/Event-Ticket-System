@@ -12,7 +12,6 @@ import org.springframework.stereotype.Service;
 
 import java.util.Collections;
 import java.util.List;
-import java.util.stream.Collectors;
 
 @Service
 public class EventService {
@@ -33,17 +32,26 @@ public class EventService {
     private TicketTypeRepository ticketTypeRepository;
 
     @Transactional
-    public Event createEvent(Event event, Integer organizer_id, Integer venue_id) {
+    public EventResponseDTO createEvent(Event event, Integer organizer_id, Integer venue_id) {
         Organizer organizer = organizerRepository.findById(organizer_id)
                 .orElseThrow(() -> new EntityNotFoundException("Organizer does not exist"));
 
         Venue venue = venueRepository.findById(venue_id)
                 .orElseThrow(() -> new EntityNotFoundException("Venue does not exist"));
-
+        Event savedEvent = eventRepository.save(event);
         event.setOrganizer(organizer);
         event.setVenue(venue);
 
-        return eventRepository.save(event);
+        return new EventResponseDTO(
+                savedEvent.getEvent_id(),
+                savedEvent.getTitle(),
+                savedEvent.getDescription(),
+                savedEvent.getEvent_date(),
+                savedEvent.getStatus().name(),
+                savedEvent.getOrganizer().getName(),
+                savedEvent.getVenue().getName(),
+                Collections.emptyList()
+        );
     }
 
     public EventResponseDTO getEventByIdWithTicketTypes(Integer event_id) {
@@ -70,7 +78,7 @@ public class EventService {
         );
     }
 
-    public List<EventResponseDTO> getAllUpcomingEvents(){
+    public List<EventResponseDTO> getAllUpcomingEvents() {
 
         return eventRepository.findByStatus(Event.Status.UPCOMING)
                 .stream()
@@ -104,6 +112,10 @@ public class EventService {
                 .sum();*/
 
         Double totalRevenue = bookingRepository.calculateTotalRevenueByEventID(eventId);
+
+        if (totalRevenue == null) {
+            totalRevenue = 0.0;
+        }
 
         return new RevenueDTO(event.getTitle(), totalRevenue);
     }

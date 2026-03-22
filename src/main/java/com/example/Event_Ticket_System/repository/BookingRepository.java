@@ -25,7 +25,7 @@ public interface BookingRepository extends JpaRepository<Booking, Integer> {
     @Query("SELECT SUM(b.ticketType.price) FROM Booking b " +
             "WHERE b.ticketType.event.event_id = :eventId " +
             "AND b.payment_status = 'CONFIRMED'")
-    Double calculateTotalRevenueByEventID(@Param("eventID") Integer eventID);
+    Double calculateTotalRevenueByEventID(@Param("eventId") Integer eventId);
 
     // Get all booking for a specific attendee
     /*@EntityGraph(attributePaths = {"attendee", "ticketType", "ticketType.event"})
