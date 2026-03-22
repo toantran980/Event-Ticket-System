@@ -9,6 +9,8 @@
 - Note 1: If inspecting the raw README.md file, simply remove any backslashes (\\).
 - Note 2: Ensure that IntelliJ, Postman, and PostgreSQL (pgAdmin4) are all configured correctly & running at the same time.
 - Note 3: Follow these API requests in exact order to demo the full experience.
+- Note 4: Third bullet contains the JSON body, which you can plug into here on Postman (*see pic below*).
+<img width="1096" height="173" alt="image" src="https://github.com/user-attachments/assets/d9a89256-0535-412c-848e-46a15de5f1fa" />
 
 ### 1) POST /api/organizers
 - Scenario: Live Nation organizer registers
