@@ -5,6 +5,9 @@
 - Moses Bui
 - An Nguyen - 885598904
 
+## Video Demo
+- Link review video: [Youtube](https://youtu.be/tWyQy8FHPN0?si=vr3pK4SE2JF-wiBD)
+
 ## Instructions
 - Ensure IntelliJ, Postman, and PostgreSQL (via pgAdmin4) are all configured correctly & running at the same time, as follows:\
 • **IntelliJ**: application.properties (use *localhost number*, *password*, and *server.port* specific to your local machine )\
