@@ -23,33 +23,8 @@ public interface BookingRepository extends JpaRepository<Booking, Integer> {
             "AND b.payment_status = 'CONFIRMED'")
     Double calculateTotalRevenueByEventID(@Param("eventId") Integer eventId);
 
-    // Get all booking for a specific attendee
-    /*@EntityGraph(attributePaths = {"attendee", "ticketType", "ticketType.event"})
-    List<Booking> findByAttendee_AttendeeId(Integer attendeeId);*/
-
     //@EntityGraph(attributePaths = {"attendee", "ticketType", "ticketType.event"})
     @Query("SELECT b FROM Booking b WHERE b.attendee.attendee_id = :attendeeId")
     List<Booking> findBookingsByAttendeeId(@Param("attendeeId") Integer attendeeId);
-
-    //Get all bookings for a specific ticket type
-    //List<Booking> findByTicketTypeId(Integer ticketTypeId);
-
-    // Counts confirmed bookings for an event
-    /*@Query("SELECT COUNT(b) FROM Booking b " +
-            "WHERE b.ticketType.event.event_id = :eventId " +
-            "AND b.payment_status = 'CONFIRMED'")
-    Long countConfirmedBookingsByEventID(@Param("eventId") Integer eventId);
-
-    // Gets bookings for an event with a specific status
-    @Query("SELECT b FROM Booking b " +
-    "WHERE b.ticketType.event.event_id = :eventId " +
-    "AND b.payment_status = :status")
-    List<Booking> findBookingsByEventIdAndStatus(@Param("eventId") Integer eventId, @Param("status") String status);
-
-    // Paginated confirmed bookings for an event
-    @Query("SELECT b FROM Booking b " +
-    "WHERE b.ticketType.event.event_id = :eventId " +
-    "AND b.payment_status = 'CONFIRMED'")
-    Page<Booking> findConfirmedBookingsByEventId(@Param("eventId") Integer eventId, Pageable pageable);*/
 
 }

@@ -64,14 +64,6 @@ public class AttendeeService {
         return attendeeRepository.save(existing);
     }
 
-    // DELETE /api/attendees/{id}
-    /*@Transactional
-    public void deleteAttendee(Integer attendeeId) {
-        if (!attendeeRepository.existsById(attendeeId))
-            throw new EntityNotFoundException("Attendee " + attendeeId + " not found");
-        attendeeRepository.deleteById(attendeeId);
-    }*/
-
     public List<BookingResponseDTO> getAllBookingsAttendee(Integer attendeeId) {
         List<Booking> bookings = bookingRepository.findBookingsByAttendeeId(attendeeId);
 
